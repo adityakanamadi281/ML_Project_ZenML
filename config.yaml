@@ -1,0 +1,28 @@
+# Configuration file for Price Prediction ML System
+data:
+  source_path: "data/raw/prices.csv"
+  processed_path: "data/processed/"
+  features_path: "data/features/"
+  
+model:
+  name: "price_predictor"
+  version: "1.0.0"
+  algorithm: "random_forest"  # Options: random_forest, gradient_boosting, linear_regression, xgboost
+  
+training:
+  test_size: 0.2
+  validation_size: 0.1
+  random_state: 42
+  cv_folds: 5
+  
+features:
+  target_column: "price"
+  categorical_features: ["location", "condition"]  # Auto-detected if empty
+  numerical_features: ["area", "bedrooms", "bathrooms", "age"]  # Auto-detected if empty
+  date_features: []
+  
+evaluation:
+  metrics: ["mse", "rmse", "mae", "r2_score"]
+  save_plots: true
+  plots_path: "reports/plots/"
+
